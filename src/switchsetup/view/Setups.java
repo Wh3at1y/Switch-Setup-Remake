@@ -27,11 +27,15 @@ public interface Setups {
 			pic.setIcon(backgroundImage);
 	}
     
-    static void setupMenuButton(JButton button, String pictureLoc)
+    static void setupMenuButton(JButton button, String pictureLoc, Class componentClass)
 	{
-		ImageIcon backgroundImage = new ImageIcon(MainMenu.class.getResource(pictureLoc));
+                button.setBorderPainted(false);
+                button.setFocusPainted(false);
+                button.setFocusable(true);
+                button.setContentAreaFilled(false);
+		ImageIcon backgroundImage = new ImageIcon(componentClass.getResource(pictureLoc));
 		Image image = backgroundImage.getImage();
-		image = image.getScaledInstance(600, 80, java.awt.Image.SCALE_FAST);
+		image = image.getScaledInstance(600, 80, java.awt.Image.SCALE_SMOOTH);
 		backgroundImage = new ImageIcon(image);
 		button.setIcon(backgroundImage);
 		
@@ -42,5 +46,20 @@ public interface Setups {
                 button.setBorderPainted(false);
                 button.setFocusPainted(false);
                 button.setBorder(null);
+	}
+    
+    static void setupSmallButton(JButton button, String pictureLoc, Class componentClass)
+	{
+		ImageIcon backgroundImage = new ImageIcon(componentClass.getResource(pictureLoc));
+		Image image = backgroundImage.getImage();
+		image = image.getScaledInstance(150, 50, java.awt.Image.SCALE_FAST);
+		backgroundImage = new ImageIcon(image);
+		button.setIcon(backgroundImage);
+		
+		button.setBorderPainted(false);
+		button.setHorizontalTextPosition(JButton.CENTER);
+		button.setVerticalTextPosition(JButton.CENTER);
+		button.setFont(new Font("Neue", Font.BOLD, 17));
+		button.setForeground(Color.DARK_GRAY);
 	}
 }
